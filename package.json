@@ -1,0 +1,12 @@
+{
+  "name": "herdr-attachments",
+  "version": "0.1.0",
+  "description": "Herdr plugin: list the files your agent wrote to the pane's attachment directory",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
