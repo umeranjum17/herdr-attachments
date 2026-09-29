@@ -3,11 +3,12 @@
 import { createHash } from 'node:crypto';
 import { createReadStream, readFileSync, readdirSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve, sep } from 'node:path';
 
 const input = JSON.parse(readFileSync(0, 'utf8') || 'null') ?? {};
 const paneId = typeof input.paneId === 'string' ? input.paneId : '';
-if (paneId === '' || paneId.includes('..') || paneId.includes('/') || paneId.includes('\\')) {
+// Same pane-id rule as `muxr share`: only real pane ids resolve inside the dump root.
+if (paneId === '' || paneId === '.' || paneId.includes('..') || paneId.includes('/') || paneId.includes('\\')) {
     process.stdout.write(JSON.stringify({ items: [] }));
     process.exit(0);
 }
@@ -28,7 +29,12 @@ function iconFor(ext) {
     return 'document-attach-outline';
 }
 
-const root = join(process.env.MUXR_HOME?.trim() || join(homedir(), '.muxr'), 'attachments', 'pane', paneId);
+const dumpBase = resolve(process.env.MUXR_HOME?.trim() || join(homedir(), '.muxr'), 'attachments', 'pane');
+const root = join(dumpBase, paneId);
+if (!resolve(root).startsWith(`${dumpBase}${sep}`)) {
+    process.stdout.write(JSON.stringify({ items: [] }));
+    process.exit(0);
+}
 let names = [];
 try {
     names = readdirSync(root).filter((name) => !name.startsWith('.'));

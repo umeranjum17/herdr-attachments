@@ -66,6 +66,15 @@ describe('attachments listing', () => {
         assert.deepEqual(ok({}).items, []);
     });
 
+    it("rejects '.' like `muxr share` does, plus '..', empty and a valid id", () => {
+        for (const paneId of ['.', '..', '']) {
+            const listed = ok({ paneId });
+            assert.deepEqual(listed.items, [], JSON.stringify(paneId));
+        }
+        assert.deepEqual(ok({}).items, []);
+        assert.equal(ok({ paneId: pane }).total, 3, 'a real pane id still lists');
+    });
+
     it('answers a pane without a dump directory with an empty list', () => {
         assert.deepEqual(ok({ paneId: 'lab:empty' }).items, []);
     });

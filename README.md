@@ -45,7 +45,7 @@ Files up to 2 MiB are hashed with SHA-256 when the list is built, so muxr can st
 **Also true:**
 
 - **Offline is muxr's job.** The plugin keeps no cache; when the host is unreachable, muxr labels its cached UI as stale and disables host actions.
-- **Hostile pane ids get nothing.** An empty pane id, or one containing `..`, `/` or `\`, returns an empty list.
+- **Hostile pane ids get nothing.** An empty or `.` pane id, or one containing `..`, `/` or `\`, returns an empty list, matching `muxr share`.
 - **`MUXR_HOME` is respected.** When it is set, the listing reads `$MUXR_HOME/attachments/pane/<pane-id>` instead of `~/.muxr`.
 
 ## What it will not do
