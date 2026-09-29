@@ -18,6 +18,16 @@
   <img src="docs/lab-listing.png" alt="A Herdr pane shares a test report, a screenshot and a 3 MB screen recording with muxr share, then the plugin's list call returns them newest first: the recording keyed by name, the two small files keyed by SHA-256" width="960" />
 </p>
 
+## Download
+
+No packaged release yet — install straight from the plugin registry:
+
+```sh
+muxr plugin install umeranjum17/herdr-attachments
+```
+
+Full steps: [Install](#install). Watch the [releases page](https://github.com/umeranjum17/herdr-attachments/releases) for the first versioned release (current source version: `0.1.0`).
+
 ## Why it exists
 
 Agents produce more than text: a screenshot of the broken page, a recording of the flow, a debug APK, the test log. When you are away from the desk, those files are stuck on the computer that made them.
