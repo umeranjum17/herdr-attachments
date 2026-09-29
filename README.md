@@ -1,3 +1,5 @@
+> **Retired.** Prompt attachments now ships built into [muxr](https://github.com/umeranjum17/muxr) (see its README) — no install is needed. If you installed this plugin, remove it with `muxr plugin remove muxr.attachments`. This repo is archived read-only.
+
 <h1 align="center">herdr-attachments</h1>
 
 <p align="center">
